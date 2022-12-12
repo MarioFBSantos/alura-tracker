@@ -22,6 +22,7 @@ import StopWatch from './stopwatch.vue';
 
 export default defineComponent({
     name:'TimerWatch',
+    emits:['whenFinish'],
     components:{
         StopWatch,
     },
@@ -43,7 +44,9 @@ export default defineComponent({
         stopCount(){
             this.active = false
             clearInterval(this.cronometro)
-        }
+            this.$emit('whenFinish', this.seconds);
+            this.seconds = 0;
+        },
     }
 })
 </script>
